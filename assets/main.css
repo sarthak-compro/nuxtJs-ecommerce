@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.home {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #4CAF50;
+}
+
+.register_section,
+.login_section {
+  padding: 50px 100px;
+  margin-top: 100px;
+}
+
+.right_border {
+  border-right: 1px solid gray;
+}
+
+.left_border {
+  border-left: 1px solid gray;
+}
+
+.username-input,
+.password-input,
+.name-input,
+.desc-input,
+.price-input,
+.category-input,
+.cancel-btn,
+.update-product-btn {
+  padding: 5px;
+  margin: 10px 5px;
+}
+
+.log-in-btn,
+.log-out-btn,
+.register-btn,
+.add-product-btn {
+  padding: 5px;
+  margin: 10px 5px;
+}
+
+.block {
+  display: block;
+}
+
+.product,
+.cart,
+.add_to_cart_btn,
+.remove_from_cart_btn,
+.deleteCart_btn,
+.update_product_btn,
+.delete_product_btn {
+  padding: 5px;
+  margin: 10px 5px;
+}

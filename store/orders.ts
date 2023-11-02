@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Order } from '~/interfaces/order'; // Define the Order interface
+import { Order } from '~/interfaces/order';
 
 interface OrdersStoreState {
   orders: Order[];
@@ -25,7 +25,7 @@ export const useOrdersStore = defineStore('ordersStore', {
       }
     },
 
-    async getUserOrders(userId: number) {
+    async getOrder(orderId: number) {
       try {
         // const response = await customFetch(`/orders/user/${userId}`);
         // const userOrders = response.value;
@@ -41,6 +41,18 @@ export const useOrdersStore = defineStore('ordersStore', {
       try {
         // Make an API request to fetch all orders
         const response = await customFetch('orders', 'GET', {}, access_token);
+
+        // Update the orders state with the fetched orders
+        this.orders = response.value as Order[];
+      } catch (error) {
+        this.handleError(error, 'Failed to fetch orders');
+      }
+    },
+
+    async getAllUsersOrders(): Promise<void> {
+      try {
+        // Make an API request to fetch all orders
+        const response = await customFetch('orders', 'GET', {});
 
         // Update the orders state with the fetched orders
         this.orders = response.value as Order[];

@@ -32,9 +32,9 @@
       <div class="bg-white rounded-lg p-4 shadow-md mt-4" v-if="useCartStore().itemCount > 0">
         <span class="text-lg font-semibold">Total: ₹{{ useCartStore().cart.totalPrice }}</span>
       </div>
-      <button class="rounded-md p-2 mt-4 hover:bg-green-300" v-if="useCartStore().itemCount > 0">
+      <NuxtLink to="checkout" class="rounded-md p-2 mt-4 hover:bg-green-300" v-if="useCartStore().itemCount > 0">
         Checkout
-      </button>
+      </NuxtLink>
       <button class="rounded-md p-2 mt-4 ml-4 hover:bg-red-300" v-if="useCartStore().itemCount > 0"
         @click="useCartStore().deleteCart()">
         Delete Cart

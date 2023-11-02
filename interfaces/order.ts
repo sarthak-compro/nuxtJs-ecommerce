@@ -1,22 +1,40 @@
+import { Product } from "./product";
+
 export interface Order {
   id: number;
-  userId: number;
-  totalPrice: number;
-  status: string;
-  // Add more properties as needed
-  user: UserDetails;
-  deliveryAddress: Address;
-  paymentMode: string;
+  orderNumber: string;
+  items: OrderItem[];
+  orderDate: Date;
+  status: OrderStatus;
+  totalAmount: number;
+  paymentMethod: PaymentMethod;
+  shippingAddress: Address;
 }
 
-interface UserDetails {
-  name: string;
-  email: string;
-  // Add more user-related properties
+interface OrderItem {
+  id: number;
+  product: Product;
+  quantity: number;
+  unitPrice: number;
+  subtotal: number;
+}
+
+enum OrderStatus {
+  Pending = 'pending',
+  Shipped = 'shipped',
+  Delivered = 'delivered',
+  Canceled = 'canceled',
+}
+
+enum PaymentMethod {
+  CreditCard = 'credit_card',
+  CashOnDelivery = 'cash_on_delivery',
+  PayPal = 'paypal',
 }
 
 interface Address {
   street: string;
   city: string;
-  // Add more address-related properties
+  state: string;
+  postalCode: string;
 }

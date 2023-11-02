@@ -62,14 +62,11 @@
       <tbody>
         <tr v-for="order in useOrdersStore().allOrders" :key="order.id">
           <td>{{ order.id }}</td>
-          <td>{{ order.userId }}</td>
-          <td>{{ order.totalPrice }}</td>
+          <td>{{ order.totalAmount }}</td>
           <td>{{ order.status }}</td>
-          <td>{{ order.user.name }}</td>
-          <td>{{ order.user.email }}</td>
-          <td>{{ order.deliveryAddress.street }}</td>
-          <td>{{ order.deliveryAddress.city }}</td>
-          <td>{{ order.paymentMode }}</td>
+          <td>{{ order.shippingAddress.street }}</td>
+          <td>{{ order.shippingAddress.city }}</td>
+          <td>{{ order.paymentMethod }}</td>
         </tr>
       </tbody>
     </table>

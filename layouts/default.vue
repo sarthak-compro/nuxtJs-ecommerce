@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex py-1 shadow-md">
+  <nav class="flex py-1 shadow-md sticky top-0 bg-white">
     <NuxtLink to="products" class="flex mx-16">
       <img src="~/assets/images/logo.jpg" alt="" class="w-[80px] h-auto rounded-full" />
       <h1 class="my-auto ml-2 text-xl font-serif">Frozen Bazaar</h1>

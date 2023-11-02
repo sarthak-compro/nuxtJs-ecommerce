@@ -12,6 +12,9 @@
           </div>
           <button type="submit" class="register-btn">Sign Up</button>
         </form>
+        <div v-if="registrationSuccess" class="success-message text-green-600">
+            Registration successful! You can now log in.
+        </div>
         <div v-if="registrationError" class="error">{{ registrationError }}</div>
       </div>
       <div class="login_section left_border">
@@ -42,12 +45,18 @@ const loginForm = reactive({
 });
 let token = ref();
 let registrationError = ref();
+const registrationSuccess = ref(false);
 let loginError = ref();
+
+onMounted(() => {
+  if (useAuthStore().isLoggedIn) navigateTo('products');
+})
+
 const onRegister = async (event: any) => {
   event.preventDefault();
   
-  // Reset the registrationError to an empty string
   registrationError.value = "";
+  registrationSuccess.value = false;
   
   try {
     const requestData = {
@@ -57,6 +66,7 @@ const onRegister = async (event: any) => {
       roles: [registerForm.role]
     };
     const user = await customFetch('auth/register', 'POST', { body: requestData });
+    registrationSuccess.value = true;
     console.log(user.value);
     registerForm.username = '';
     registerForm.email = '';
@@ -82,7 +92,7 @@ const onLogin = async (event: any) => {
     if (token.value) {
       useAuthStore().login();
       localStorage.setItem('access_token', JSON.stringify(token.value.access_token));
-      useRouter().push('products')
+      useRouter().push('products');
     //   await getCart();
     }
   } catch (error: any) {

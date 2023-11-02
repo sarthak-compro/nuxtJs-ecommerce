@@ -7,8 +7,21 @@
   justify-content: center;
 }
 
-button {
-  background-color: #4CAF50;
+/* Select the button by its type (submit) */
+button, button[type="submit"] {
+  background-color: #4CAF50; /* Green background color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding around the text */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 4px; /* Add rounded corners */
+  font-size: 16px; /* Adjust font size */
+  font-weight: bold; /* Make the text bold */
+}
+
+/* Style the button on hover */
+button, button[type="submit"]:hover {
+  background-color: #45a049; /* Darker green background color on hover */
 }
 
 .register_section,
@@ -35,6 +48,8 @@ button {
 .update-product-btn {
   padding: 5px;
   margin: 10px 5px;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .log-in-btn,

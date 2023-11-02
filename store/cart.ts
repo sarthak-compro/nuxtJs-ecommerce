@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { Cart } from '~/interfaces/cart';
+import { Product } from '~/interfaces/product';
 
 interface CartStoreState {
   cart: Cart | null;
@@ -13,12 +14,12 @@ export const useCartStore:any = defineStore('cartStore', {
     cart: null,
   }),
   actions: {
-    async addToCart(product: any) {
+    async addToCart(product: Product) {
       try {
         const requestData = {
           productId: product.id,
           name: product.name,
-          quantity: product.quantity ?? 1,
+          quantity: 1,
           price: product.price
         };
         const res = await customFetch('cart', 'POST', { body: requestData }, access_token);
@@ -28,9 +29,31 @@ export const useCartStore:any = defineStore('cartStore', {
       }
     },
 
-    async removeFromCart(product: any) {
+    async increment (item: any) {
+      const requestData = {
+        productId: item.productId,
+        name: item.name,
+        quantity: 1,
+        price: item.price
+      };
+      const res = await customFetch('cart', 'POST', { body: requestData }, access_token);
+      this.cart = res.value as Cart;
+    },
+    
+    async decrement (item: any) {
+      const requestData = {
+        productId: item.productId,
+        name: item.name,
+        quantity: -1,
+        price: item.price
+      };
+      const res = await customFetch('cart', 'POST', { body: requestData }, access_token);
+      this.cart = res.value as Cart;
+    },
+
+    async removeFromCart(item: any) {
       try {
-        const res = await customFetch('cart/item', 'DELETE', { body: { productId: product.id } }, access_token);
+        const res = await customFetch('cart/item', 'DELETE', { body: { productId: item.productId } }, access_token);
         this.cart = res.value as Cart;
         if (!this.cart?.items?.length) this.cart = null;
       } catch (error) {

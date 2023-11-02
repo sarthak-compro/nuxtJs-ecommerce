@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-16',
       viewport: 'width=500, initial-scale=1',
-      title: 'e commerce',
+      title: 'Frozen Bazaar',
       meta: [
         { name: 'description', content: '' }
       ],

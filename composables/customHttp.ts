@@ -1,6 +1,7 @@
 export default function customHttp() {
   const customFetch = async(url: string, method: any, options?: { headers?: any, body?: any, query?: any }, token?: any) => {
-    const baseUrl: string = 'http://13.232.66.83:3000/';
+    // const baseUrl: string = 'http://localhost:3000/';
+    const baseUrl: string = 'http://13.233.245.184:3000/';
     url = baseUrl + url;
   
     const headers = options?.headers || {};

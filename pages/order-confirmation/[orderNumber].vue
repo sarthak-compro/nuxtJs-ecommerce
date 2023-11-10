@@ -34,28 +34,9 @@
 </template>
   
 <script setup>
-import { useRoute } from 'vue-router';
-import { useCartStore } from '~/store/cart';
+import { useOrdersStore } from '~/store/orders';
 
-const date = new Date();
-let day = date.getDate();
-let month = date.toLocaleString('default', { month: 'long' });
-let year = date.getFullYear();
-
-let currentDate = ref(`${month} ${day}, ${year}`);
-
-// Mock order data (you should replace this with actual order data)
-const order = ref({
-    orderNumber: '2023001',
-    orderDate: 'October 15, 2023',
-    paymentMethod: 'Cash on Delivery',
-    shippingAddress: {
-        street: '123 Main St',
-        city: 'Cityville',
-        country: 'Countryland',
-    },
-});
-
-const route = useRoute();
+const orderNumber = useRouter().currentRoute.value.params.orderNumber;
+console.log(orderNumber);
+const order = await useOrdersStore().getOrder(orderNumber);
 </script>
-  

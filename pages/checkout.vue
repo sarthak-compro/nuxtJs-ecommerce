@@ -52,10 +52,7 @@
 </template>
   
 <script setup>
-import { useRouter } from 'vue-router';
 import { useCartStore } from '~/store/cart'
-
-const router = useRouter();
 
 const selectedPayment = ref(''); // Initially no payment method is selected
 
@@ -65,8 +62,7 @@ const processPayment = () => {
     window.location.href = 'https://example.com/phonepe-payment-gateway';
   } else if (selectedPayment.value === 'cod') {
     // Handle the Cash on Delivery payment method (e.g., place the order)
-    // You can add your specific logic here.
-    router.push('/payment'); // Redirect to the order confirmation page.
+    useRouter().push('/payment');
   }
 };
 </script>

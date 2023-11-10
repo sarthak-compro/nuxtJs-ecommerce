@@ -1,22 +1,14 @@
-import { Product } from "./product";
+import { Item } from "./item";
 
 export interface Order {
   id: number;
   orderNumber: string;
-  items: OrderItem[];
+  items: Item[];
   orderDate: Date;
   status: OrderStatus;
   totalAmount: number;
   paymentMethod: PaymentMethod;
   shippingAddress: Address;
-}
-
-interface OrderItem {
-  id: number;
-  product: Product;
-  quantity: number;
-  unitPrice: number;
-  subtotal: number;
 }
 
 enum OrderStatus {

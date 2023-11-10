@@ -15,7 +15,7 @@
         <div v-if="registrationSuccess" class="success-message text-green-600">
             Registration successful! You can now log in.
         </div>
-        <div v-if="registrationError" class="error">{{ registrationError }}</div>
+        <div v-if="registrationError" class="error text-red-600">{{ registrationError }}</div>
       </div>
       <div class="login_section left_border">
         <h1 class="text-2xl font-semibold mb-4">Login</h1>
@@ -24,7 +24,7 @@
           <input type="password" placeholder="password" class="block password-input" v-model="loginForm.password">
           <button type="submit" class="log-in-btn">Log In</button>
         </form>
-        <div v-if="loginError" class="error">{{ loginError }}</div>
+        <div v-if="loginError" class="error text-red-600">{{ loginError }}</div>
       </div>
     </div>
 </template>

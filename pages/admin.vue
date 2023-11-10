@@ -78,6 +78,10 @@ import { useOrdersStore } from '~/store/orders';
 import { useProductStore } from '~/store/products';
 import { useCartStore } from '~/store/cart';
 
+definePageMeta({
+  middleware: ['authenticated-user-only'],
+});
+
 onMounted(async () => {
   // await useOrdersStore().getAllOrders();
   await useProductStore().getProducts();

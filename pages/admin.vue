@@ -45,28 +45,28 @@
   </div>
   <div class="my-8">
     <h1 class="text-4xl">Orders</h1>
-    <table class="mt-8">
+    <table class="mt-8 w-full">
       <thead>
         <tr>
-          <th>Order ID</th>
-          <th>User ID</th>
+          <th>Order number</th>
           <th>Total Price</th>
           <th>Status</th>
-          <th>User Name</th>
-          <th>User Email</th>
           <th>Delivery Address</th>
           <th>City</th>
           <th>Payment Mode</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <tr v-for="order in useOrdersStore().allOrders" :key="order.id">
-          <td>{{ order.id }}</td>
+          <td>{{ order.orderNumber }}</td>
           <td>{{ order.totalAmount }}</td>
           <td>{{ order.status }}</td>
           <td>{{ order.shippingAddress.street }}</td>
           <td>{{ order.shippingAddress.city }}</td>
           <td>{{ order.paymentMethod }}</td>
+          <td>
+            <button v-if="order.status === OrderStatus.PENDING" @click="markStatusAsDelivered(order.id)">Mark as Delivered</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -77,13 +77,15 @@
 import { useOrdersStore } from '~/store/orders';
 import { useProductStore } from '~/store/products';
 import { useCartStore } from '~/store/cart';
+import { OrderStatus } from '~/enums/status';
 
 definePageMeta({
   middleware: ['authenticated-user-only'],
 });
 
 onMounted(async () => {
-  // await useOrdersStore().getAllOrders();
+  await useOrdersStore().getAllOrders();
+  console.log(useOrdersStore().allOrders);
   await useProductStore().getProducts();
 });
 
@@ -93,6 +95,7 @@ const addProductForm = reactive({
   price: 0,
   category: ''
 });
+
 const updateProductForm = reactive({
   name: '',
   description: '',
@@ -141,4 +144,8 @@ const deleteProduct = async (product: any) => {
   await useProductStore().deleteProduct(product.id);
   await useProductStore().getProducts();
 };
+
+const markStatusAsDelivered = async (orderNumber: number) => {
+  await useOrdersStore().markOrderAsDelivered(orderNumber);
+}
 </script>

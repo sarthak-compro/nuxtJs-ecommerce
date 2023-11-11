@@ -55,8 +55,7 @@ const submitAddress = async () => {
     paymentMethod: 'CASH_ON_DELIVERY',
     shippingAddress: address.value,
   }
-  // const createdOrder = await useOrdersStore().createOrder(order);
-  const createdOrder = {orderNumber : 123};
+  const createdOrder = await useOrdersStore().createOrder(order);
   
   navigateTo(`order-confirmation/${createdOrder.orderNumber}`);
 };

@@ -1,27 +1,16 @@
 import { Item } from "./item";
+import { OrderStatus } from "~/enums/status";
+import { PaymentMethod } from "~/enums/paymentMethod";
 
 export interface Order {
   id: number;
   orderNumber: string;
   items: Item[];
-  orderDate: Date;
+  orderDate: string;
   status: OrderStatus;
   totalAmount: number;
   paymentMethod: PaymentMethod;
   shippingAddress: Address;
-}
-
-enum OrderStatus {
-  Pending = 'pending',
-  Shipped = 'shipped',
-  Delivered = 'delivered',
-  Canceled = 'canceled',
-}
-
-enum PaymentMethod {
-  CreditCard = 'credit_card',
-  CashOnDelivery = 'cash_on_delivery',
-  PayPal = 'paypal',
 }
 
 interface Address {

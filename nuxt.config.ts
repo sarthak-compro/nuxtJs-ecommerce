@@ -18,8 +18,8 @@ export default defineNuxtConfig({
       ]
     },
   },
-  server: {
-    port: process.env.PORT
+  devServer: {
+    port: process.env.PORT as number | undefined
   },
   css: [
     'assets/main.css',

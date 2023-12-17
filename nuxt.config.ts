@@ -18,6 +18,9 @@ export default defineNuxtConfig({
       ]
     },
   },
+  server: {
+    port: process.env.PORT
+  },
   css: [
     'assets/main.css',
     '@fortawesome/fontawesome-svg-core/styles.css'
